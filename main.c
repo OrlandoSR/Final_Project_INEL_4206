@@ -102,11 +102,17 @@ __interrupt void SWITCH1_ISR(void){
         if(P1OUT & BIT0){
             state = STAGE2;
         }
+        else {
+            state=STAGE1
+        }
         break;
 
     case STAGE2:
         if(P1OUT & BIT6){
             state = STAGE3;
+        }
+        else {
+            state=STAGE1
         }
         break;
 
@@ -115,6 +121,9 @@ __interrupt void SWITCH1_ISR(void){
             state = WIN;
             P1OUT |= BIT0;
             P1OUT &=~BIT6;
+        }
+        else {
+              state=STAGE1
         }
         break;
 
